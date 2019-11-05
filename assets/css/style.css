@@ -20,27 +20,36 @@ fieldset {
     border-color: brown;
     border-image: initial;
 }
-/* #btn-group {
-    float: left;
-} */
 
 h1 {
-    padding: 36px;
+    padding: 36px 10px 36px 10px;
+    margin-right: 10px;
     border: solid black;
     background: black;
     color: white;
-    width: 50%;
+    width: 20%;
     float: left;
 }
 
 figure {
     float: left;
+    margin-bottom: 2%;
 }
 
 h2 {
+    float: left;
     padding: 20px;
     background: black;
     color: white;
+}
+
+figcaption {
+    text-align: center;
+}
+
+ #clear {
+    padding: 11px;;
+    font-size: 26px;
 }
 
 #directions {
@@ -48,7 +57,7 @@ h2 {
 }
 
 #btn-group {
-    margin-top: 1px;
+    margin-top: 5px;
 }
 #btn-group .btn {
     background-color: #4CAF50; /* Green background */

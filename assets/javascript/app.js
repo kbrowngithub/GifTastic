@@ -17,8 +17,6 @@ var gifTastic = {
 
     // Create a button for each item in an array
     createButtons: function () {
-        
-        
         for (i = 0; i < this.items.length; i++) {
             var newButton = $("<button data-subject=\"" + this.items[i] + "\" class=\"btn\">");
             console.log(newButton);
@@ -26,42 +24,17 @@ var gifTastic = {
             $("#btn-group").append(newButton);
         }
         var gifArea = $("<div id=\"gif-area\">gifArea</div>");
-        // $("#container").append(gifArea);
-        // $("#gif-area").prepend("<img src=\"https://media2.giphy.com/media/8rFQp4kHXJ0gU/200_s.gif\"></img>");
-
-    },
-
-    getGiphys: function (subject, limit, rating) {
-        // Create our query string
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=PU1WmxlDY9rk5q1lVFBzJf1OqqXpXdGr&q=" + subject + "&limit=" + limit + "&offset=0&rating=" + rating + "&lang=en";
-        console.log(queryURL);
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-
-            console.log("img html should look like: https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif\" data-still=\"https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif\" data-animate=\"https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif\" data-state=\"still\" class=\"gif\">");
-            var srcImg = response.data[0];
-            var imgHtml = "<img src=\"" + srcImg.images.fixed_height_still.url + "\" data-still=\"" + srcImg.images.fixed_height_still.url + " data-animate=\"" + srcImg.images.fixed_height_still.url + "\"";
-            console.log("getGiphys(): imgHtml: " + imgHtml);
-
-            $("#gif-area").prepend($(imgHtml));
-
-        });
-
     }
 };
 
 // Create initial page
 gifTastic.createButtons();
 
-//
-// Handle these click events
-//
+// *************************
+// Listen for these click events
+// *************************
 
-// Subject buttons
+// Subject Buttons
 $(document).on("click", ".btn", function () {
     // Display the gifs
     var subject = $(this).attr("data-subject");
@@ -102,6 +75,10 @@ $(document).on("click", ".btn", function () {
 
 $(document).on("click", "#newSubIn", function () {
     $(this).val("");
+});
+
+$(document).on("click", "#clear", function () {
+    $("#gif-area").empty();
 });
 
 $(document).on("click", "#submit", function () {
