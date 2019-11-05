@@ -63,14 +63,15 @@ gifTastic.createButtons();
 $(document).on("click", ".btn", function () {
     // Display the gifs
     var subject = $(this).attr("data-subject");
-    var limit = 1;
+    var limit = 10;
     var rating = "G";
 
     console.log("Subject = " + subject);
     // gifTastic.getGiphys(subject, "1", "G");
 
     // Create our query string
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=PU1WmxlDY9rk5q1lVFBzJf1OqqXpXdGr&q=" + subject + "&limit=" + limit + "&offset=0&rating=" + rating + "&lang=en";
+    // var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=PU1WmxlDY9rk5q1lVFBzJf1OqqXpXdGr&q=" + subject + "&limit=" + limit + "&offset=0&rating=" + rating + "&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=PU1WmxlDY9rk5q1lVFBzJf1OqqXpXdGr&q=" + subject + "&limit=" + limit + "&offset=0&lang=en";
     console.log(queryURL);
 
     $.ajax({
@@ -79,18 +80,22 @@ $(document).on("click", ".btn", function () {
     }).then(function (response) {
         console.log(response);
 
-        // console.log("img html should look like: https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif\" data-still=\"https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif\" data-animate=\"https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif\" data-state=\"still\" class=\"gif\">");
-        var srcImg = response.data[0];
-        var imgHtml = "<img src=\"" + srcImg.images.fixed_height_still.url + "\" data-still=\"" + srcImg.images.fixed_height_still.url + "\" data-animate=\"" + srcImg.images.fixed_height.url + "\" data-state=\"still\" class=\"gif\"></img>";
-        console.log("imgHtml: " + imgHtml);
+        for (var i = 0; i < response.data.length; i++) {
+            var srcImg = response.data[i];
 
-        newImage = $(imgHtml);
-        $("#gif-area").prepend(newImage);
+            var newFigure = $("<figure id='figure'>");
+            var figCaption = $("<figcaption id='caption'>");
+            var imgHtml = "<img src=\"" + srcImg.images.fixed_height_still.url + "\" data-still=\"" + srcImg.images.fixed_height_still.url + "\" data-animate=\"" + srcImg.images.fixed_height.url + "\" data-state=\"still\" class=\"gif\"></img>";
+            console.log("imgHtml: " + imgHtml);
+            newImage = $(imgHtml);
+            newFigure.append(newImage);
+            figCaption.text("Rated: " + response.data[0].rating);
+            newFigure.append(figCaption);
 
+            $("#gif-area").prepend(newFigure);
+        }
     });
 
-    // $("#gif-area").prepend("<img src=https://media3.giphy.com/media/rMszO5FZRLMyc/200_s.gif?cid=9ab9b4a95d847a68740442c80e2349788ecf734060b69225&rid=200_s.gif</img>");
-    // $("#gif-area").prepend(newImage);
 });
 
 // gif clicks
