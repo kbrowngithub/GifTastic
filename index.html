@@ -2,35 +2,50 @@
 
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>GifTastic</title>
+<head>
+  <meta charset="UTF-8">
+  <title>GifTastic</title>
 
-    <!--Style Sheets-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-  </head>
+  <!--Style Sheets-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-  <body id="backdrop">
+<body id="backdrop">
 
-    <div id="wrapper">
-      <h1>GifTastic</h1>
+  <div id="wrapper">
+    <!-- <h1>GifTastic</h1> -->
 
-      <div id="container">
-        <div id="button-area"></div>
-        <!-- <div id="gif-area">
-            <img src="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-still="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-animate="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif" data-state="still" class="gif">
-        </div> -->
-      </div>
+    <div id="container">
+      <h1>Click A Subject To See Gifs OR Add Your Own</h1>
+
+      <form id="newSubForm">
+        <fieldset>
+          <legend>Add A New Subject</legend>
+          <!-- Enter A Subject:<br> -->
+          <input id="newSubIn" type="text" name="newsubject" value="Type New Subject Here"><br><br>
+          <input id="submit" type="submit" value="Get Subject">
+        </fieldset>
+      </form>
+
+      <div id="btn-group"></div>
 
     </div>
+    
+    <div id="directions"></div>
+      <h2>Click The Gifs Below To Start The Clip. Click Again To Stop The Clip.</h2>
+    </div>
 
-    <!-- jQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div id="gif-area"></div>
 
-    <!-- Script -->
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
+  </div>
 
-  </body>
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Script -->
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
 
 </html>

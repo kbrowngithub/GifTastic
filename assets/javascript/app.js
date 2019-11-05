@@ -17,14 +17,16 @@ var gifTastic = {
 
     // Create a button for each item in an array
     createButtons: function () {
+        
+        
         for (i = 0; i < this.items.length; i++) {
             var newButton = $("<button data-subject=\"" + this.items[i] + "\" class=\"btn\">");
             console.log(newButton);
             newButton.text(this.items[i]);
-            $("#button-area").append(newButton);
+            $("#btn-group").append(newButton);
         }
         var gifArea = $("<div id=\"gif-area\">gifArea</div>");
-        $("#container").append(gifArea);
+        // $("#container").append(gifArea);
         // $("#gif-area").prepend("<img src=\"https://media2.giphy.com/media/8rFQp4kHXJ0gU/200_s.gif\"></img>");
 
     },
@@ -84,7 +86,7 @@ $(document).on("click", ".btn", function () {
             var srcImg = response.data[i];
 
             var newFigure = $("<figure id='figure'>");
-            var figCaption = $("<figcaption id='caption'>");
+            var figCaption = $("<figcaption>");
             var imgHtml = "<img src=\"" + srcImg.images.fixed_height_still.url + "\" data-still=\"" + srcImg.images.fixed_height_still.url + "\" data-animate=\"" + srcImg.images.fixed_height.url + "\" data-state=\"still\" class=\"gif\"></img>";
             console.log("imgHtml: " + imgHtml);
             newImage = $(imgHtml);
@@ -96,6 +98,21 @@ $(document).on("click", ".btn", function () {
         }
     });
 
+});
+
+$(document).on("click", "#newSubIn", function () {
+    $(this).val("");
+});
+
+$(document).on("click", "#submit", function () {
+    event.preventDefault();
+    $("#btn-group").empty();
+
+    items.push($("#newSubIn").val().trim());
+    $("#newSubIn").val("Type New Subject Here");
+    console.log("Items now = " + items);
+
+    gifTastic.createButtons();
 });
 
 // gif clicks
